@@ -4,6 +4,7 @@ Preview a form file with a running dialog
 Similar to the Build->Preview action in Genero Studio which opens a form and executes a MENU statement, this progam displays a form and uses dynamic dialogs to build a DIALOG statement from the contents of the form, populate the form with data appropriate to the datatype and widget properties, and thus allow you to preview the form with some data and data-entry
 
 If no argument is passed in, an openFile front-call will occur to allow you to select a .42f compiled form file.
+
 If an argument is passed in, that will be the initial form file
 
 At this stage it has been tested against TABLE and normal inputs. More work is required to add SCROLLGRID, TREE, and Matrix.
