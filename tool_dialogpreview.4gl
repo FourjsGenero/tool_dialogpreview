@@ -26,7 +26,7 @@ MAIN
     DEFINE d ui.Dialog
     DEFINE ev STRING
     DEFINE table_idx, field_idx, row_idx INTEGER
-    DEFINE form_name STRING
+    DEFINE form_name, form_tmp STRING
 
     CALL init_wordlist()
     OPTIONS FIELD ORDER FORM
@@ -41,18 +41,24 @@ MAIN
         CALL ui.Interface.frontCall(
             "standard", "openfile", ["", "Form Files", "*.42f", "Form Fields"],
             form_name)
-        LET form_name = os.Path.rootName(form_name)
+        --LET form_name = os.Path.rootName(form_name)
     END IF
     -- No form then exit
     IF form_name IS NULL THEN
         EXIT PROGRAM 1
     END IF
 
+	-- Retrive FORM from the front-end context to the virtual machine context
+	let form_tmp = SFMT("%1.42f", os.Path.makeTempName())
+	call fgl_getfile(form_name,form_tmp)
+	let form_name = form_tmp
+
+	display "Open Form:", form_name
     OPEN WINDOW w WITH FORM form_name
         ATTRIBUTES(TEXT = SFMT("Dialog Preview %1",
             os.Path.baseName(form_name)))
 
-    CALL populate_field_list(SFMT("%1.42f", form_name))
+    CALL populate_field_list(form_name)
 
     LET d = ui.Dialog.createMultipleDialog()
     -- add global triggers
