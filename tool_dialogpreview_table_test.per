@@ -1,0 +1,15 @@
+LAYOUT
+TABLE
+{
+[f01         ][f02         ][f03         ]
+}
+END
+END
+
+ATTRIBUTES
+EDIT f01 = formonly.field1 TYPE INTEGER, TITLE="Integer";
+EDIT f02 = formonly.field2 TYPE CHAR, SCROLL, TITLE="String";
+DATEEDIT f03 = formonly.field3 TYPE DATE, TITLE="Date";
+
+INSTRUCTIONS
+SCREEN RECORD scr(field1, field2, field3);

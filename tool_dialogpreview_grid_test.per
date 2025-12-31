@@ -1,0 +1,17 @@
+LAYOUT
+GRID
+{
+Integer [f01         ]
+String  [f02         ]
+Date    [f03         ]
+}
+END
+END
+
+ATTRIBUTES
+EDIT f01 = formonly.field1 TYPE INTEGER;
+EDIT f02 = formonly.field2 TYPE CHAR, SCROLL;
+DATEEDIT f03 = formonly.field3 TYPE DATE;
+
+INSTRUCTIONS
+SCREEN RECORD scr(field1, field2, field3);
